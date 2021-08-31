@@ -39,7 +39,7 @@ ___
 ## Submission
 - Send an email to your Cascade contact with a link to your solution on your github account when completed.
 
-Do not submit a PR. 
-Do not ask for external assistance. 
-Do not share solution or assessment with outside sources.
-Do not reuse previously written code.
+1. Do not submit a PR. 
+2. Do not ask for external assistance. 
+3. Do not share solution or assessment with outside sources.
+4. Do not reuse previously written code.
