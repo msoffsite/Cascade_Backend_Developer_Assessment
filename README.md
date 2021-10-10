@@ -2,7 +2,7 @@
 NOTE: All work for this position is done using .NET, C#, and SQL.
 
 # Overview
-This exercise is intended to take no longer than 8 hours.  Please limit the detail of your solution with that time in mind.  Please include a README with your submission detailing your solution.
+This exercise is intended to take no longer than 8 hours.  Please limit the detail of your solution with that time in mind.  Please include a README with your submission detailing your solution. The solution must be COMPLETE and RUNNABLE.
 
 ## Data definition
 
