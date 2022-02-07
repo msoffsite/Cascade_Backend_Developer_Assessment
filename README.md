@@ -2,7 +2,7 @@
 NOTE: All work for this position is done using .NET Core 3.1, C#, and SQL.
 
 # Overview
-This exercise is intended to take no longer than 8 hours.  Please limit the detail of your solution with that time in mind.  Please include a README with your submission detailing your solution. The solution must be COMPLETE and RUNNABLE.
+This exercise is intended to take no longer than 8 hours.  Please limit the detail of your solution with that time in mind.  Please include a README with your submission detailing your solution. The solution must be COMPLETE and TESTABLE with test data. Make sure to include all necessary scripts and test data.
 
 ## Data definition
 
@@ -41,5 +41,5 @@ ___
 
 1. Do not submit a PR. 
 2. Do not ask for external assistance. 
-3. Do not share solution or assessment with outside sources.
+3. Do not share this assessment link with outside sources.
 4. Do not reuse previously written code.
