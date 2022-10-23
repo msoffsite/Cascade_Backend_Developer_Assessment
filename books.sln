@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CascadeFinTech.API", "src\CascadeFintech.API\CascadeFinTech.API.csproj", "{B21AC850-AFD8-449E-85E6-10457B8A5E7B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CascadeFinTech.Tests", "CascadeFinTech.Tests\CascadeFinTech.Tests.csproj", "{7673D7AC-158D-4493-BB53-224A9AE65789}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CascadeFinTech.Models", "CascadeFinTech.Models\CascadeFinTech.Models.csproj", "{847F2D97-0C3D-4734-BBD7-EECAC4DE47C7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL", "SQL", "{F4995E3D-A9A6-4A6D-98BD-11156998D39F}"
+	ProjectSection(SolutionItems) = preProject
+		InitializeDatabase.sql = InitializeDatabase.sql
+		SeedDatabase.sql = SeedDatabase.sql
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B21AC850-AFD8-449E-85E6-10457B8A5E7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B21AC850-AFD8-449E-85E6-10457B8A5E7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B21AC850-AFD8-449E-85E6-10457B8A5E7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B21AC850-AFD8-449E-85E6-10457B8A5E7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7673D7AC-158D-4493-BB53-224A9AE65789}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7673D7AC-158D-4493-BB53-224A9AE65789}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7673D7AC-158D-4493-BB53-224A9AE65789}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7673D7AC-158D-4493-BB53-224A9AE65789}.Release|Any CPU.Build.0 = Release|Any CPU
+		{847F2D97-0C3D-4734-BBD7-EECAC4DE47C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{847F2D97-0C3D-4734-BBD7-EECAC4DE47C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{847F2D97-0C3D-4734-BBD7-EECAC4DE47C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{847F2D97-0C3D-4734-BBD7-EECAC4DE47C7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {548AE3A5-B99D-43D9-951F-918FD3AD5AB5}
+	EndGlobalSection
+EndGlobal
