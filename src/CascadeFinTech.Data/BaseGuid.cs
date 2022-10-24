@@ -4,7 +4,8 @@ using System.Text;
 
 namespace CascadeFinTech.Models
 {
-    public class Author : BaseGuid
+    public class BaseGuid
     {
+        public Guid Id { get; set; }
     }
 }

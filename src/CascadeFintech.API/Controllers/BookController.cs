@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CascadeFinTech.Models;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 
 namespace CascadeFinTech.API.Controllers
 {
@@ -12,19 +14,27 @@ namespace CascadeFinTech.API.Controllers
     [Route("api/books")]
     public class BookController : ControllerBase
     {
+        private string ConnectionString { get; }
+
+        public BookController(IConfiguration configuration)
+        {
+            ConnectionString = configuration.GetConnectionString("DefaultConnection");
+        }
+
         [Route("byauthor")]
         [HttpGet]
-        public IEnumerable<Book> GetByAuthor()
+        public IEnumerable<BookDto> GetByAuthor()
         {
-            return new List<Book>()
+            var test = ConnectionString;
+            return new List<BookDto>()
             .ToArray();
         }
 
         [Route("bypublisher")]
         [HttpGet]
-        public IEnumerable<Book> GetByPublisher()
+        public IEnumerable<BookDto> GetByPublisher()
         {
-            return new List<Book>()
+            return new List<BookDto>()
             .ToArray();
         }
     }

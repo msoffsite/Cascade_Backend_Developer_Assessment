@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CascadeFinTech.Models\CascadeFinTech.Models.csproj" />
+    <ProjectReference Include="..\CascadeFinTech.Data\CascadeFinTech.Data.csproj" />
   </ItemGroup>
 
 
