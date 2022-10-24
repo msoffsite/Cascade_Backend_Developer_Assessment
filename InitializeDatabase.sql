@@ -222,11 +222,35 @@ SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
 -- Author:		Mark Stone
+-- Create date: 10/24/2022
+-- Description:	Get author by Id.
+-- =============================================
+CREATE PROCEDURE [dbo].[GetAuthorById]
+(
+    @Id     UNIQUEIDENTIFIER
+)
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+    SELECT authors.*
+      FROM [dbo].[Author] authors
+     WHERE (authors.Id = @Id)
+END
+GO
+
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Mark Stone
 -- Create date: 10/23/2022
 -- Description:	Get books sorted by author last 
 -- and first name then publisher.
 -- =============================================
-CREATE PROCEDURE [dbo].[GetAuthorsSortedByAuthorLastFirstPublisher]
+CREATE PROCEDURE [dbo].[GetBooksSortedByAuthorLastFirstPublisher]
 	
 AS
 BEGIN
@@ -255,7 +279,7 @@ GO
 -- Description:	Get books sorted by publisher
 -- the author last and first name.
 -- =============================================
-CREATE PROCEDURE [dbo].[GetAuthorsSortedByPublisherAuthorLastFirst]
+CREATE PROCEDURE [dbo].[GetBooksSortedByPublisherAuthorLastFirst]
 	
 AS
 BEGIN
@@ -270,5 +294,54 @@ BEGIN
      ORDER BY publishers.[Name],
               authors.LastName,
               authors.FirstName
+END
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Mark Stone
+-- Create date: 10/24/2022
+-- Description:	Get price by book id 
+-- and currency.
+-- =============================================
+CREATE PROCEDURE [dbo].[GetPriceByBookIdCurrency]
+(
+    @BookId     UNIQUEIDENTIFIER,
+    @Currency   NVARCHAR(25)
+)
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+    SELECT prices.*
+      FROM [dbo].[Price] prices
+     WHERE (prices.BookId = @BookId)
+       AND (prices.Currency = @Currency)
+END
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Publisher:		Mark Stone
+-- Create date: 10/24/2022
+-- Description:	Get publisher by Id.
+-- =============================================
+CREATE PROCEDURE [dbo].[GetPublisherById]
+(
+    @Id     UNIQUEIDENTIFIER
+)
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+    SELECT publishers.*
+      FROM [dbo].[Publisher] publishers
+     WHERE (publishers.Id = @Id)
 END
 GO

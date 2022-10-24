@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using CascadeFinTech.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
+using CascadeFinTech.Data;
 
 namespace CascadeFinTech.API.Controllers
 {

@@ -1,7 +1,9 @@
 ﻿using CascadeFinTech.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
+using CascadeFinTech.Data.Extensions;
 
 namespace CascadeFinTech.Data.dbo.Book
 {
