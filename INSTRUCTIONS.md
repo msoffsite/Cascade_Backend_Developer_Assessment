@@ -7,3 +7,6 @@
     api/books/byauthor
     api/books/bypublisher
     api/books/totalprice (default)
+
+Note: I added a property for MLA citations via a custom attribute that then gets read via reflection. I lacked the time to do so for the Chicago style citations, though had I the time I would have approached 
+it via an additional custom attribute.
