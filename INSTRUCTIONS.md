@@ -13,4 +13,4 @@ it via an additional custom attribute.
 
 Question: If you have a large list of these in memory and want to save the entire list to the MS SQL Server database, what is the most efficient way to save the list with only one call to the DB server?
 
-Answer: Through a user defined table and a class mirroring that table's structure. You could could go with a DataTable, but I prefer using a class then converting/casting that to a DataTable due to a class being strongly typed.
+Answer: Through a user defined table and a class mirroring that table's structure. You could could go with a DataTable, but I prefer using a class then converting/casting that to a DataTable due to a class being strongly typed. The class would be cast in the method that calls a stored proc to save the data.
