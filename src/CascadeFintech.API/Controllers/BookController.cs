@@ -32,5 +32,13 @@ namespace CascadeFinTech.API.Controllers
             var output = await BookDto.GetBooksSortedByPublisherAuthorLastFirstAsync(ConnectionString);
             return output;
         }
+
+        [Route("totalprice")]
+        [HttpGet]
+        public async Task<decimal> GetTotalPriceForAllBooks()
+        {
+            var output = await BookDto.GetTotalPriceForAllBooks(ConnectionString);
+            return output;
+        }
     }
 }
