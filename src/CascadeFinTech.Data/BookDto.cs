@@ -13,25 +13,39 @@ using PublisherTable = CascadeFinTech.Data.dbo.Publisher.Table;
 using PriceTable = CascadeFinTech.Data.dbo.Price.Table;
 using System.ComponentModel;
 using System.Linq;
+using CascadeFinTech.Data.Attributes;
+using System.Reflection.Metadata;
+using System;
+using System.Reflection;
 
 namespace CascadeFinTech.Data
 {
     public class BookDto : BaseGuid
     {
-        public string Publisher { get; set; }
-        public string Title { get; set; }
-        public string Author { get; set; }
-        public decimal Price { get; set; }
+        [CitationMLA(Name = "Publisher.")]
+        public string Publisher { get; }
+
+        [CitationMLA(Name = "Title.", Description = "(in quotation marks)")]
+        public string Title { get; }
+
+        [CitationMLA(Name = "Author.", Description = "(last, first)")]
+        public string Author { get; }
+
+        [CitationMLA(Name = "Price.")]
+        public decimal Price { get; }
+
+        public string CitationsForMLA { get; }
 
         private BookDto() { }
 
-        private BookDto(BookModel book, PublisherModel publisher, AuthorModel author, PriceModel price)
+        private BookDto(BookModel book, PublisherModel publisher, AuthorModel author, PriceModel price, string citationsForMLA)
         {
             Id = book.Id;
             Publisher = publisher.Name;
             Author = $"{author.LastName}, {author.FirstName}";
             Price = price.Value;
             Title = book.Title;
+            CitationsForMLA = citationsForMLA;
         }
 
         public static async Task<List<BookDto>> GetBooksAsync(string connectionString)
@@ -62,8 +76,31 @@ namespace CascadeFinTech.Data
             return output;
         }
 
+        private static string GetCitationInfo()
+        {
+            string output = string.Empty;
+            var properties = typeof(BookDto).GetProperties();
+            foreach (var property in properties)
+            {
+                var propertyName = property.Name;
+                var customAttribute = typeof(BookDto).GetProperty(propertyName).GetCustomAttribute<CitationMLA>();
+                if (customAttribute != null)
+                {
+                    output += customAttribute.Name;
+                    if (!string.IsNullOrEmpty(customAttribute.Description))
+                    {
+                        output += $" {customAttribute.Description}";
+                    }
+                    output += "|";
+                }
+            }
+            return output.TrimEnd('|');
+        }
+
         private static async Task<List<BookDto>> BuildDtoForEachAsync(string connectionString, List<BookModel> books)
         {
+            var citationsForMLA = GetCitationInfo();
+
             var authorTable = new AuthorTable(connectionString);
             var priceTable = new PriceTable(connectionString);
             var publisherTable = new PublisherTable(connectionString);
@@ -74,7 +111,7 @@ namespace CascadeFinTech.Data
                 var publisher = await publisherTable.GetPublisherByIdAsync(book.PublisherId);
                 var author = await authorTable.GetAuthorByIdAsync(book.AuthorId);
                 var price = await priceTable.GetPriceByBookIdCurrencyAsync(book.Id, dbo.Price.Enumeration.Currency.USD);
-                var outItem = new BookDto(book, publisher, author, price);
+                var outItem = new BookDto(book, publisher, author, price, citationsForMLA);
                 output.Add(outItem);
             }
             return output;
@@ -82,6 +119,8 @@ namespace CascadeFinTech.Data
 
         private static async Task<List<BookDto>> BuildDtoAsync(string connectionString, List<BookModel> books)
         {
+            var citationsForMLA = GetCitationInfo();
+
             var authorTable = new AuthorTable(connectionString);
             var authors = await authorTable.GetAuthorsAsync();
 
@@ -95,7 +134,7 @@ namespace CascadeFinTech.Data
                     let publisher = publishers.FirstOrDefault(x => x.Id == book.PublisherId)
                     let author = authors.FirstOrDefault(x => x.Id == book.AuthorId)
                     let price = prices.FirstOrDefault(x => x.BookId == book.Id && x.Currency == dbo.Price.Enumeration.Currency.USD)
-                    let outItem = new BookDto(book, publisher, author, price)
+                    let outItem = new BookDto(book, publisher, author, price, citationsForMLA)
                     select outItem).ToList();
         }
     }
