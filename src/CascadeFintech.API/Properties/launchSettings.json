@@ -12,7 +12,9 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "api/books/totalprice",
+      //"launchUrl": "api/books/byauthor",
+      "launchUrl": "api/books/bypublisher",
+      //"launchUrl": "api/books/totalprice",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
