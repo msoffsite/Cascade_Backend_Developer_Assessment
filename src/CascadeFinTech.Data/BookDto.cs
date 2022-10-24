@@ -67,7 +67,7 @@ namespace CascadeFinTech.Data
                 var outItem = new BookDto(book, publisher, author, price);
                 output.Add(outItem);
             }
-            return new List<BookDto>();
+            return output;
         }
     }
 }
