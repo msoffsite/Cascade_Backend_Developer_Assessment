@@ -12,6 +12,7 @@ using BookTable = CascadeFinTech.Data.dbo.Book.Table;
 using PublisherTable = CascadeFinTech.Data.dbo.Publisher.Table;
 using PriceTable = CascadeFinTech.Data.dbo.Price.Table;
 using System.ComponentModel;
+using System.Linq;
 
 namespace CascadeFinTech.Data
 {
@@ -61,7 +62,7 @@ namespace CascadeFinTech.Data
             return output;
         }
 
-        private static async Task<List<BookDto>> BuildDtoAsync(string connectionString, List<BookModel> books)
+        private static async Task<List<BookDto>> BuildDtoForEachAsync(string connectionString, List<BookModel> books)
         {
             var authorTable = new AuthorTable(connectionString);
             var priceTable = new PriceTable(connectionString);
@@ -77,6 +78,25 @@ namespace CascadeFinTech.Data
                 output.Add(outItem);
             }
             return output;
+        }
+
+        private static async Task<List<BookDto>> BuildDtoAsync(string connectionString, List<BookModel> books)
+        {
+            var authorTable = new AuthorTable(connectionString);
+            var authors = await authorTable.GetAuthorsAsync();
+
+            var priceTable = new PriceTable(connectionString);
+            var prices = await priceTable.GetPricesAsync();
+
+            var publisherTable = new PublisherTable(connectionString);
+            var publishers = await publisherTable.GetPublishersAsync();
+
+            return (from book in books
+                    let publisher = publishers.FirstOrDefault(x => x.Id == book.PublisherId)
+                    let author = authors.FirstOrDefault(x => x.Id == book.AuthorId)
+                    let price = prices.FirstOrDefault(x => x.BookId == book.Id && x.Currency == dbo.Price.Enumeration.Currency.USD)
+                    let outItem = new BookDto(book, publisher, author, price)
+                    select outItem).ToList();
         }
     }
 }

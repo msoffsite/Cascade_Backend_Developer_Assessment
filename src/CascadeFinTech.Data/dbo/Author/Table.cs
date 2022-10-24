@@ -26,7 +26,7 @@ namespace CascadeFinTech.Data.dbo.Author
                 new SqlParameter("Id", inputId)
             };
 
-            Model result = null;
+            Model output = null;
             using (var reader = await DatabaseManager.ExecuteReaderAsync(
                        StoredProcedure.GetAuthorById,
                        _parameters,
@@ -35,10 +35,28 @@ namespace CascadeFinTech.Data.dbo.Author
             {
                 while (reader.Read())
                 {
-                    result = DataReader(reader);
+                    output = DataReader(reader);
                 }
             };
-            return result;
+            return output;
+        }
+
+        internal async Task<List<Model>> GetAuthorsAsync()
+        {
+            var output = new List<Model>();
+            using (var reader = await DatabaseManager.ExecuteReaderAsync(
+                       StoredProcedure.GetAuthors,
+                       _parameters,
+                       ConnectionString
+                   ))
+            {
+                while (reader.Read())
+                {
+                    var outputItem = DataReader(reader);
+                    if (outputItem != null) { output.Add(outputItem); }
+                }
+            };
+            return output;
         }
 
         private static Model DataReader(IDataReader reader)

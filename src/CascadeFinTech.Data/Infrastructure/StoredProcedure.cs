@@ -7,6 +7,11 @@
             "GetAuthorById"
         );
 
+        internal static string GetAuthors => ProcName(
+            "dbo",
+            "GetAuthors"
+        );
+
         internal static string GetBooks => ProcName(
             "dbo",
             "GetBooks"
@@ -22,11 +27,6 @@
             "GetBooksSortedByPublisherAuthorLastFirst"
         );
 
-        internal static string GetPublisherById => ProcName(
-            "dbo",
-            "GetPublisherById"
-        );
-
         internal static string GetPriceByBookIdCurrency => ProcName(
             "dbo",
             "GetPriceByBookIdCurrency"
@@ -35,6 +35,21 @@
         internal static string GetPriceForAllBooksByCurrency => ProcName(
             "dbo",
             "GetPriceForAllBooksByCurrency"
+        );
+
+        internal static string GetPrices => ProcName(
+            "dbo",
+            "GetPrices"
+        );
+
+        internal static string GetPublisherById => ProcName(
+            "dbo",
+            "GetPublisherById"
+        );
+
+        internal static string GetPublishers => ProcName(
+            "dbo",
+            "GetPublishers"
         );
 
         private static string ProcName(string schema, string action)

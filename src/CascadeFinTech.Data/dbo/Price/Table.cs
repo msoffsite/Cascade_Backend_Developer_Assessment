@@ -26,7 +26,7 @@ namespace CascadeFinTech.Data.dbo.Price
                 new SqlParameter("Currency", currency.ToString())
             };
 
-            Model result = null;
+            Model output = null;
             using (var reader = await DatabaseManager.ExecuteReaderAsync(
                        StoredProcedure.GetPriceByBookIdCurrency,
                        _parameters,
@@ -35,10 +35,10 @@ namespace CascadeFinTech.Data.dbo.Price
             {
                 while (reader.Read())
                 {
-                    result = DataReader(reader);
+                    output = DataReader(reader);
                 }
             };
-            return result;
+            return output;
         }
 
         internal async Task<decimal> GetPriceForAllBooksByCurrencyAsync(Enumeration.Currency currency)
@@ -48,13 +48,31 @@ namespace CascadeFinTech.Data.dbo.Price
                 new SqlParameter("Currency", currency.ToString())
             };
 
-            var response = await DatabaseManager.ExecuteScalarAsync<decimal>(
+            var output = await DatabaseManager.ExecuteScalarAsync<decimal>(
                        StoredProcedure.GetPriceForAllBooksByCurrency,
                        _parameters,
                        ConnectionString
                    );
 
-            return response;
+            return output;
+        }
+
+        internal async Task<List<Model>> GetPricesAsync()
+        {
+            var output = new List<Model>();
+            using (var reader = await DatabaseManager.ExecuteReaderAsync(
+                       StoredProcedure.GetPrices,
+                       _parameters,
+                       ConnectionString
+                   ))
+            {
+                while (reader.Read())
+                {
+                    var outputItem = DataReader(reader);
+                    if (outputItem != null) { output.Add(outputItem); }
+                }
+            };
+            return output;
         }
 
         private static Model DataReader(IDataReader reader)

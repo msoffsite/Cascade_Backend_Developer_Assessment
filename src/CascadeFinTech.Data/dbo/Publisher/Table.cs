@@ -41,6 +41,24 @@ namespace CascadeFinTech.Data.dbo.Publisher
             return result;
         }
 
+        internal async Task<List<Model>> GetPublishersAsync()
+        {
+            var output = new List<Model>();
+            using (var reader = await DatabaseManager.ExecuteReaderAsync(
+                       StoredProcedure.GetPublishers,
+                       _parameters,
+                       ConnectionString
+                   ))
+            {
+                while (reader.Read())
+                {
+                    var outputItem = DataReader(reader);
+                    if (outputItem != null) { output.Add(outputItem); }
+                }
+            };
+            return output;
+        }
+
         private static Model DataReader(IDataReader reader)
         {
             var output = new Model

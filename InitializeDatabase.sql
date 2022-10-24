@@ -246,6 +246,26 @@ GO
 -- =============================================
 -- Author:		Mark Stone
 -- Create date: 10/23/2022
+-- Description:	Get all authors.
+-- =============================================
+CREATE PROCEDURE [dbo].[GetAuthors]
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+    SELECT authors.*
+      FROM [dbo].[Author] authors
+
+END
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Mark Stone
+-- Create date: 10/23/2022
 -- Description:	Get books.
 -- =============================================
 CREATE PROCEDURE [dbo].[GetBooks]
@@ -375,6 +395,27 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
+-- Price:		Mark Stone
+-- Create date: 10/23/2022
+-- Description:	Get all prices.
+-- =============================================
+CREATE PROCEDURE [dbo].[GetPrices]
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+    SELECT prices.*
+      FROM [dbo].[Price] prices
+
+END
+GO
+
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
 -- Publisher:		Mark Stone
 -- Create date: 10/24/2022
 -- Description:	Get publisher by Id.
@@ -390,5 +431,25 @@ BEGIN
     SELECT publishers.*
       FROM [dbo].[Publisher] publishers
      WHERE (publishers.Id = @Id)
+END
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Publisher:		Mark Stone
+-- Create date: 10/23/2022
+-- Description:	Get all publishers.
+-- =============================================
+CREATE PROCEDURE [dbo].[GetPublishers]
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+    SELECT publishers.*
+      FROM [dbo].[Publisher] publishers
+
 END
 GO
