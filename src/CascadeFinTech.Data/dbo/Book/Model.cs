@@ -1,5 +1,4 @@
-﻿using CascadeFinTech.Models;
-using System;
+﻿using System;
 
 namespace CascadeFinTech.Data.dbo.Book
 {

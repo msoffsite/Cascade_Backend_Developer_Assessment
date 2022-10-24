@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CascadeFinTech.Models
+namespace CascadeFinTech.Data
 {
     public class BaseGuid
     {

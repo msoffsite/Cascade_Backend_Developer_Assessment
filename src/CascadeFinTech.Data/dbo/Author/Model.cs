@@ -1,6 +1,4 @@
-﻿using CascadeFinTech.Models;
-
-namespace CascadeFinTech.Data.dbo.Author
+﻿namespace CascadeFinTech.Data.dbo.Author
 {
     internal class Model : BaseGuid
     {

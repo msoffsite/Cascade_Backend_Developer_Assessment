@@ -1,6 +1,4 @@
-﻿using CascadeFinTech.Models;
-using System;
-using Currency = CascadeFinTech.Data.dbo.Price.Enumeration.Currency;
+﻿using System;
 
 namespace CascadeFinTech.Data.dbo.Price
 {

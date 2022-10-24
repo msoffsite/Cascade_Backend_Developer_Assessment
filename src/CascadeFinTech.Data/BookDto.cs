@@ -1,5 +1,4 @@
-﻿using CascadeFinTech.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using AuthorModel = CascadeFinTech.Data.dbo.Author.Model;
@@ -11,11 +10,8 @@ using AuthorTable = CascadeFinTech.Data.dbo.Author.Table;
 using BookTable = CascadeFinTech.Data.dbo.Book.Table;
 using PublisherTable = CascadeFinTech.Data.dbo.Publisher.Table;
 using PriceTable = CascadeFinTech.Data.dbo.Price.Table;
-using System.ComponentModel;
 using System.Linq;
 using CascadeFinTech.Data.Attributes;
-using System.Reflection.Metadata;
-using System;
 using System.Reflection;
 
 namespace CascadeFinTech.Data

@@ -1,6 +1,5 @@
 using System.Linq;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 using Xunit;
 
 using BookDto = CascadeFinTech.Data.BookDto;
