@@ -23,7 +23,7 @@ namespace CascadeFinTech.Data.dbo.Price
             _parameters = new List<SqlParameter>
             {
                 new SqlParameter("BookId", bookId),
-                new SqlParameter("Currency", currency)
+                new SqlParameter("Currency", currency.ToString())
             };
 
             Model result = null;
@@ -31,7 +31,7 @@ namespace CascadeFinTech.Data.dbo.Price
                        StoredProcedure.GetPriceByBookIdCurrency,
                        _parameters,
                        ConnectionString
-                   ).ConfigureAwait(false))
+                   ))
             {
                 while (reader.Read())
                 {
@@ -41,13 +41,29 @@ namespace CascadeFinTech.Data.dbo.Price
             return result;
         }
 
+        internal async Task<decimal> GetPriceForAllBooksByCurrencyAsync(Enumeration.Currency currency)
+        {
+            _parameters = new List<SqlParameter>
+            {
+                new SqlParameter("Currency", currency.ToString())
+            };
+
+            var response = await DatabaseManager.ExecuteScalarAsync<decimal>(
+                       StoredProcedure.GetPriceForAllBooksByCurrency,
+                       _parameters,
+                       ConnectionString
+                   );
+
+            return response;
+        }
+
         private static Model DataReader(IDataReader reader)
         {
             var output = new Model
             {
                 Id = reader.GetValue<Guid>(Field.Id),
                 BookId = reader.GetValue<Guid>(Field.BookId),
-                Currency = reader.GetValue<Enumeration.Currency>(Field.Currency),
+                Currency = Enum.Parse<Enumeration.Currency>(reader.GetValue<string>(Field.Currency)),
                 Value = reader.GetValue<decimal>(Field.Value),
             };
 

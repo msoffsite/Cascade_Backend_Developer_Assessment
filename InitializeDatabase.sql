@@ -239,6 +239,26 @@ BEGIN
 END
 GO
 
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Mark Stone
+-- Create date: 10/23/2022
+-- Description:	Get books.
+-- =============================================
+CREATE PROCEDURE [dbo].[GetBooks]
+	
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+    SELECT books.*
+      FROM [dbo].[Book] books
+
+END
+GO
 
 SET ANSI_NULLS ON
 GO
@@ -264,7 +284,8 @@ BEGIN
         ON (books.PublisherId = publishers.Id)
      ORDER BY authors.LastName,
               authors.FirstName,
-              publishers.[Name]
+              publishers.[Name],
+              books.Title
 
 END
 GO
@@ -293,7 +314,8 @@ BEGIN
         ON (books.PublisherId = publishers.Id)
      ORDER BY publishers.[Name],
               authors.LastName,
-              authors.FirstName
+              authors.FirstName,
+              books.[Title]
 END
 GO
 
@@ -320,6 +342,31 @@ BEGIN
       FROM [dbo].[Price] prices
      WHERE (prices.BookId = @BookId)
        AND (prices.Currency = @Currency)
+END
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Mark Stone
+-- Create date: 10/23/2022
+-- Description:	Get total price for all books
+-- by currency.
+-- =============================================
+CREATE PROCEDURE [dbo].[GetPriceForAllBooksByCurrency]
+(
+    @Currency   NVARCHAR(25)
+)	
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+    SELECT SUM(prices.[Value])
+      FROM [dbo].[Price] prices
+     WHERE (prices.Currency = @Currency)
+
 END
 GO
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
 using CascadeFinTech.Data;
+using System.Threading.Tasks;
 
 namespace CascadeFinTech.API.Controllers
 {
@@ -18,19 +19,18 @@ namespace CascadeFinTech.API.Controllers
 
         [Route("byauthor")]
         [HttpGet]
-        public IEnumerable<BookDto> GetByAuthor()
+        public async Task<IEnumerable<BookDto>> GetByAuthor()
         {
-            var test = ConnectionString;
-            return new List<BookDto>()
-            .ToArray();
+            var output = await BookDto.GetBooksSortedByAuthorLastFirstPublisherAsync(ConnectionString);
+            return output;
         }
 
         [Route("bypublisher")]
         [HttpGet]
-        public IEnumerable<BookDto> GetByPublisher()
+        public async Task<IEnumerable<BookDto>> GetByPublisher()
         {
-            return new List<BookDto>()
-            .ToArray();
+            var output = await BookDto.GetBooksSortedByPublisherAuthorLastFirstAsync(ConnectionString);
+            return output;
         }
     }
 }

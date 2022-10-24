@@ -11,6 +11,7 @@ using AuthorTable = CascadeFinTech.Data.dbo.Author.Table;
 using BookTable = CascadeFinTech.Data.dbo.Book.Table;
 using PublisherTable = CascadeFinTech.Data.dbo.Publisher.Table;
 using PriceTable = CascadeFinTech.Data.dbo.Price.Table;
+using System.ComponentModel;
 
 namespace CascadeFinTech.Data
 {
@@ -18,8 +19,7 @@ namespace CascadeFinTech.Data
     {
         public string Publisher { get; set; }
         public string Title { get; set; }
-        public string AuthorFirstName { get; set; }
-        public string AuthorLastName { get; set; }
+        public string Author { get; set; }
         public decimal Price { get; set; }
 
         private BookDto() { }
@@ -28,27 +28,40 @@ namespace CascadeFinTech.Data
         {
             Id = book.Id;
             Publisher = publisher.Name;
-            AuthorFirstName = author.FirstName;
-            AuthorLastName = author.LastName;
+            Author = $"{author.LastName}, {author.FirstName}";
             Price = price.Value;
             Title = book.Title;
+        }
+
+        public static async Task<List<BookDto>> GetBooksAsync(string connectionString)
+        {
+            BookTable bookTable = new BookTable(connectionString);
+            var books = await bookTable.GetBooksAsync();
+            return await BuildDtoAsync(connectionString, books);
         }
 
         public static async Task<List<BookDto>> GetBooksSortedByAuthorLastFirstPublisherAsync(string connectionString)
         {
             BookTable bookTable = new BookTable(connectionString);
             var books = await bookTable.GetBooksSortedByAuthorLastFirstPublisherAsync();
-            return await BuildDto(connectionString, books);
+            return await BuildDtoAsync(connectionString, books);
         }
 
-        public static async Task<List<BookDto>> GetBooksSortedByPublisherAuthorLastFirst(string connectionString)
+        public static async Task<List<BookDto>> GetBooksSortedByPublisherAuthorLastFirstAsync(string connectionString)
         {
             BookTable bookTable = new BookTable(connectionString);
             var books = await bookTable.GetBooksSortedByPublisherAuthorLastFirstAsync();
-            return await BuildDto(connectionString, books);
+            return await BuildDtoAsync(connectionString, books);
         }
 
-        private static async Task<List<BookDto>> BuildDto(string connectionString, List<BookModel> books)
+        public static async Task<decimal> GetTotalPriceForAllBooks(string connectionString)
+        {
+            var priceTable = new PriceTable(connectionString);
+            var output = await priceTable.GetPriceForAllBooksByCurrencyAsync(dbo.Price.Enumeration.Currency.USD);
+            return output;
+        }
+
+        private static async Task<List<BookDto>> BuildDtoAsync(string connectionString, List<BookModel> books)
         {
             var authorTable = new AuthorTable(connectionString);
             var priceTable = new PriceTable(connectionString);

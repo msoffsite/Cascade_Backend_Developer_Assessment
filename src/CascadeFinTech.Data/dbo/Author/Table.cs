@@ -31,7 +31,7 @@ namespace CascadeFinTech.Data.dbo.Author
                        StoredProcedure.GetAuthorById,
                        _parameters,
                        ConnectionString
-                   ).ConfigureAwait(false))
+                   ))
             {
                 while (reader.Read())
                 {

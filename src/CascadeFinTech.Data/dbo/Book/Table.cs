@@ -21,6 +21,25 @@ namespace CascadeFinTech.Data.dbo.Book
             ConnectionString = connectionString;
         }
 
+        internal async Task<List<Model>> GetBooksAsync()
+        {
+            var result = new List<Model>();
+            using (var reader = await DatabaseManager.ExecuteReaderAsync(
+                       StoredProcedure.GetBooks,
+                       _parameters,
+                       ConnectionString
+                   ))
+            {
+                var table = new Model();
+                while (reader.Read())
+                {
+                    var item = DataReader(reader);
+                    if (item != null) { result.Add(item); }
+                }
+            };
+            return result;
+        }
+
         internal async Task<List<Model>> GetBooksSortedByAuthorLastFirstPublisherAsync()
         {
             var result = new List<Model>();
@@ -28,7 +47,7 @@ namespace CascadeFinTech.Data.dbo.Book
                        StoredProcedure.GetBooksSortedByAuthorLastFirstPublisher,
                        _parameters,
                        ConnectionString
-                   ).ConfigureAwait(false))
+                   ))
             {
                 var table = new Model();
                 while (reader.Read())
@@ -47,7 +66,7 @@ namespace CascadeFinTech.Data.dbo.Book
                        StoredProcedure.GetBooksSortedByPublisherAuthorLastFirst,
                        _parameters,
                        ConnectionString
-                   ).ConfigureAwait(false))
+                   ))
             {
                 var table = new Model();
                 while (reader.Read())

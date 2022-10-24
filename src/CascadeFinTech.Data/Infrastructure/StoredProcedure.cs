@@ -4,37 +4,42 @@
     {
         internal static string GetAuthorById => ProcName(
             "dbo",
-            "BookModel",
             "GetAuthorById"
+        );
+
+        internal static string GetBooks => ProcName(
+            "dbo",
+            "GetBooks"
         );
 
         internal static string GetBooksSortedByAuthorLastFirstPublisher => ProcName(
             "dbo",
-            "BookModel",
             "GetBooksSortedByAuthorLastFirstPublisher"
         );
 
         internal static string GetBooksSortedByPublisherAuthorLastFirst => ProcName(
             "dbo",
-            "BookModel",
             "GetBooksSortedByPublisherAuthorLastFirst"
         );
 
         internal static string GetPublisherById => ProcName(
             "dbo",
-            "BookModel",
             "GetPublisherById"
         );
 
         internal static string GetPriceByBookIdCurrency => ProcName(
             "dbo",
-            "BookModel",
             "GetPriceByBookIdCurrency"
         );
 
-        private static string ProcName(string schema, string table, string action)
+        internal static string GetPriceForAllBooksByCurrency => ProcName(
+            "dbo",
+            "GetPriceForAllBooksByCurrency"
+        );
+
+        private static string ProcName(string schema, string action)
         {
-            return $"[{schema}].[{table}_{action}]";
+            return $"[{schema}].[{action}]";
         }
     }
 }
