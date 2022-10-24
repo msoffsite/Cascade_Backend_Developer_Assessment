@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CascadeFinTech.Data.Infrastructure
+﻿namespace CascadeFinTech.Data.Infrastructure
 {
     internal static class Field
     {

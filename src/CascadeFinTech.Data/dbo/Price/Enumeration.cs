@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CascadeFinTech.Data.dbo.Price
+﻿namespace CascadeFinTech.Data.dbo.Price
 {
     public class Enumeration
     {
