@@ -2,7 +2,7 @@
 NOTE: All work for this position is done using .NET Core 6, C#, and SQL.
 
 # Overview
-This exercise is intended to take no longer than 6 hours.  Please limit the detail of your solution with that time in mind.  Please include a README with your submission detailing your solution. The solution must be COMPLETE and TESTABLE with test data. Make sure to include all necessary scripts and test data.
+This exercise is intended to take no longer than 4 to 6 hours.  Please limit the detail of your solution with that time in mind.  Please include a README with your submission detailing your solution. The solution must be COMPLETE and TESTABLE with test data. Make sure to include all necessary scripts and test data.
 
 ## Data definition
 
