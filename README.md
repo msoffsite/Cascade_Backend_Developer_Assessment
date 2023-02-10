@@ -20,7 +20,7 @@ public class Book
 ## Problem
 1.	Create a REST API using ASP.NET MVC and write a method to return a sorted list of these by Publisher, Author (last, first), then title.
 
-2.	Write another API method to return a sorted list by Author (last, first) then title.
+2.	Write another API method to add an entry to the Book table.
 
 3.	If you had to create one or more tables to store the Book data in a MS SQL database, outline the table design along with fields and their datatypes. 
 
