@@ -1,8 +1,8 @@
 # Cascade_Backend_Developer_Assessment
-NOTE: All work for this position is done using .NET Core 3.1, C#, and SQL.
+NOTE: All work for this position is done using .NET Core 6, C#, and SQL.
 
 # Overview
-This exercise is intended to take no longer than 6 hours.  Please limit the detail of your solution with that time in mind.  Please include a README with your submission detailing your solution. The solution must be COMPLETE and TESTABLE with test data. Make sure to include all necessary scripts and test data.
+This exercise is intended to take no longer than 4 to 6 hours.  Please limit the detail of your solution with that time in mind.  Please include a README with your submission detailing your solution. The solution must be COMPLETE and TESTABLE with test data. Make sure to include all necessary scripts and test data.
 
 ## Data definition
 
@@ -20,11 +20,11 @@ public class Book
 ## Problem
 1.	Create a REST API using ASP.NET MVC and write a method to return a sorted list of these by Publisher, Author (last, first), then title.
 
-2.	Write another API method to return a sorted list by Author (last, first) then title.
+2.	If you had to create one or more tables to store the Book data in a MS SQL database, outline the table design along with fields and their datatypes. 
 
-3.	If you had to create one or more tables to store the Book data in a MS SQL database, outline the table design along with fields and their datatypes. 
+3.	Write another API method to add an entry to the Book table.	
 
-4.	Write stored procedures in MS SQL Server for steps 1 and 2, and use them in separate API methods to return the same results.
+4.	Write stored procedures in MS SQL Server for steps 1 and 3, and use them in separate API methods to return the same results.
 
 5.	Write an API method to return the total price of all books in the database.
 
